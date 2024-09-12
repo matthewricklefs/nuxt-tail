@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   content: [
     './components/**/*.{js,vue,ts}',
     './layouts/**/*.vue',
@@ -7,7 +8,11 @@ module.exports = {
     './nuxt.config.{js,ts}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {},
+      },
+    },
     FontFamily: {
       sans: ['Mont', 'sans-serif'],
       serif: ['Merriweather', 'serif'],

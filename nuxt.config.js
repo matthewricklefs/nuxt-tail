@@ -1,14 +1,9 @@
 export default {
-  target: 'static',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Matthew's Portfolio",
-
     htmlAttrs: {
       lang: 'en',
     },
-
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -17,51 +12,44 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/css/main.css',
-    '~/assets/css/transitions.css',
-    'animate.css/animate.compat.css',
+    '~/assets/css/tailwind',
+    '~assets/scss/global',
+    '~assets/scss/variables',
+    '~assets/scss/mixins',
+    'vue-preloaders/dist/vue-preloaders.css',
   ],
-
-  // Global route middleware
+  components: true,
   router: {
     middleware: 'pages',
   },
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
   loading: {
     color: 'DodgerBlue',
-    height: '100px',
+    height: '100%',
     continuous: true,
-    duration: 6000,
+    duration: 3,
     throttle: 0,
   },
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  gsap: {
+    extraPlugins: {
+      scrollTo: true,
+      scrollTrigger: true,
+      draggable: true,
+      text: true,
+    },
+    extraEases: {
+      expoScaleEase: true,
+      roughEase: true,
+    },
+  },
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxt/postcss8',
+    '@nuxtjs/color-mode',
+    'nuxt-gsap-module',
   ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  plugins: ['~plugins/preloaders.js'],
   build: {
-    transpile: ['gsap', 'gsap/Draggable'],
-    postcss: {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    },
+    transpile: ['vue-preloaders'],
   },
 }
